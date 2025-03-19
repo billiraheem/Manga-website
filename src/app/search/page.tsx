@@ -1,6 +1,6 @@
 "use client";
 import { useSearchParams } from "next/navigation";
-import { Container, Typography, Grid2 } from "@mui/material";
+import { Container, Typography, Grid2, Box } from "@mui/material";
 import MangaCard from "../components/mangaCards/MangaCards"; 
 import mangaList from "../manga/mangaList";
 
@@ -20,17 +20,17 @@ export default function SearchPage() {
           Search results for "{query}"
         </Typography>
   
-        <Grid2 container spacing={3}>
+        <Box display="flex" flexWrap="wrap" gap={3} justifyContent="left">
           {filteredManga.length > 0 ? (
             filteredManga.map((manga) => (
-              <Grid2 item key={manga.id} xs={12} sm={6} md={4}>
+              <Box key={manga.id} p={1}>
                 <MangaCard {...manga} />
-              </Grid2>
+              </Box>
             ))
           ) : (
             <Typography>No manga found.</Typography>
           )}
-        </Grid2>
+        </Box>
       </Container>
     );
   }

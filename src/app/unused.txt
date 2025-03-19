@@ -1,0 +1,100 @@
+Bookmarks Component
+// const [bookmarkedManga, setBookmarkedManga] = useState<Mangatype[]>([]);
+
+  // useEffect(() => {
+  //   const savedBookmarks: Mangatype[] = JSON.parse(localStorage.getItem("bookmarks") || "[]");
+  //   setBookmarkedManga(savedBookmarks);
+  // }, []);
+
+  // const removeBookmark = (id: number) => {
+  //   const updatedBookmarks = bookmarkedManga.filter((manga) => manga.id !== id);
+  //   setBookmarkedManga(updatedBookmarks);
+  //   localStorage.setItem("bookmarks", JSON.stringify(updatedBookmarks));
+  // };
+
+    {/* <Button onClick={() => removeBookmark(manga.id)} color="secondary">
+                  Remove Bookmark
+                </Button> */}
+
+Manga Card Component
+// const [bookmarked, setBookmarked] = useState<boolean>(false);
+
+    // useEffect(() => {
+    //   const savedBookmarks: Mangatype[] = JSON.parse(localStorage.getItem("bookmarks") || "[]");
+    //   setBookmarked(savedBookmarks.some((manga) => manga.id === id));
+    // }, [id]);
+
+    // const toggleBookmark = () => {
+    //   let savedBookmarks: Mangatype[] = JSON.parse(localStorage.getItem("bookmarks") || "[]");
+
+    //   if (bookmarked) {
+    //     // remove from bookmarks
+    //     savedBookmarks = savedBookmarks.filter((manga) => manga.id !== id);
+    //     setBookmarked(false);
+    //     localStorage.setItem("bookmarks", JSON.stringify(savedBookmarks));
+    //     if (removeBookmark) {
+    //       removeBookmark(id); // Update bookmarks page
+    //     }
+    //   } else { // Add to bookmarks
+    //     savedBookmarks.push({ id, title, image, description, rating });
+    //     setBookmarked(true);
+    //     localStorage.setItem("bookmarks", JSON.stringify(savedBookmarks));
+    //   }
+
+    //   // localStorage.setItem("bookmarks", JSON.stringify(savedBookmarks));
+    //   // setBookmarked(!bookmarked);
+    // };
+
+    {/* <Button size="small" color="primary">About</Button> */}
+
+    {/* <IconButton>
+            <BookmarkAdd />
+          </IconButton> */}
+          {/* <IconButton>
+            <Share />
+          </IconButton> */}
+
+//const MangaDetails = () =>{
+//   const { id } = useParams();
+//   const manga = mangaList.find((m) => m.id === Number(id));
+
+//   if (!manga) {
+//     return <Typography variant="h4" align="center">Manga not found</Typography>;
+//   }
+
+//   return (
+//     <Container>
+//       <Card>
+//         <CardMedia component="img" height="400" image={manga.image} alt={manga.title} />
+//         <CardContent>
+//           <Typography variant="h4">{manga.title}</Typography>
+//           <Typography variant="body1">{manga.description}</Typography>
+//         </CardContent>
+//       </Card>
+//     </Container>
+//   );
+// }
+// function removeBookmark(id: number) {
+//   throw new Error("Function not implemented.");
+// }
+// export default { MangaCard, MangaDetails };
+
+NavBar Component
+ {/* <div style={{ display: 'flex', alignItems: 'center' }}>
+            <Search sx={{ mr: 1 }} />
+            <InputBase placeholder="Search manga..." />
+          </div> */}
+
+    // <Container maxWidth="xl" sx={{ py: 4 }}>
+    // {children}
+    // </Container>
+
+    // <footer style={{ textAlign: 'center', padding: '20px' }}>
+    // <Typography>© 2025 MangaExplorer. All rights reserved.</Typography>
+    // </footer>
+
+Search Component
+{/* <IconButton type="submit">
+        <Search sx={{ color: "gray" }} />
+      </IconButton> */}
+

@@ -1,10 +1,7 @@
 "use client";
-import { Container, Grid2, Typography } from "@mui/material";
-import Image from "next/image";
-import styles from "./page.module.css";
+import { Box, Container, Typography } from "@mui/material";
 import mangaList from "./manga/mangaList";
 import MangaCard from "./components/mangaCards/MangaCards";
-import Link from "next/link";
 
 export default function Home() {
   return (
@@ -12,15 +9,15 @@ export default function Home() {
       <Typography variant="h5" align="center" gutterBottom>
         Manga Collection
       </Typography>
-      <Grid2 container spacing={3}>
+      <Box display="flex" flexWrap="wrap" gap={3} justifyContent="left">
         {
           mangaList.map((manga) => (
-            <Grid2 item key={manga.id} xs={12} sm={6} md={4}>
+            <Box key={manga.id} p={1}>
               <MangaCard {...manga} />
-            </Grid2>
+            </Box>
           ))
         }
-      </Grid2>
+      </Box>
     </Container>
   );
 }

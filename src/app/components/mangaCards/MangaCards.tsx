@@ -1,10 +1,11 @@
 "use client"; 
 import { Card, CardContent, CardMedia, CardActions, Typography, Button, IconButton, Container, Stack  } from "@mui/material";
-import { BookmarkAdd, Share } from '@mui/icons-material'
+import { Bookmark, BookmarkBorder } from '@mui/icons-material'
 import { SyntheticEvent, useEffect, useState } from 'react'
-import mangaList, { Mangatype } from "@/app/manga/mangaList";
-import { useParams } from "next/navigation";
+import { Mangatype } from "@/app/manga/mangaList";
 import Link from "next/link";
+import { useBookmarks } from "@/app/contexts/bookmarksContext";
+import CustomButton from "../buttonComponent/customButton";
 
 
 const MangaCard: React.FC<Mangatype> = ({ id, title, image, rating, description}) => {
@@ -12,25 +13,8 @@ const MangaCard: React.FC<Mangatype> = ({ id, title, image, rating, description}
       e.currentTarget.src = '/images/placeholder-cover.jpg'
     }
 
-    const [bookmarked, setBookmarked] = useState<boolean>(false);
-
-    useEffect(() => {
-      const savedBookmarks: Mangatype[] = JSON.parse(localStorage.getItem("bookmarks") || "[]");
-      setBookmarked(savedBookmarks.some((manga) => manga.id === id));
-    }, [id]);
-
-    const toggleBookmark = () => {
-      let savedBookmarks: Mangatype[] = JSON.parse(localStorage.getItem("bookmarks") || "[]");
-
-      if (bookmarked) {
-        savedBookmarks = savedBookmarks.filter((manga) => manga.id !== id);
-      } else {
-        savedBookmarks.push({ id, title, image, description, rating });
-      }
-
-      localStorage.setItem("bookmarks", JSON.stringify(savedBookmarks));
-      setBookmarked(!bookmarked);
-    };
+    const { bookmarks, toggleBookmark } = useBookmarks();
+    const isBookmarked = bookmarks.some((manga) => manga.id === id);
   
     return (
         <Card sx={{ maxWidth: 300, margin: 2, ':hover': { transform: 'scale(1.02)' } }}>
@@ -48,45 +32,21 @@ const MangaCard: React.FC<Mangatype> = ({ id, title, image, rating, description}
         <CardActions>
           <Stack direction="row" spacing={10}>
             <Link href={`/manga/${id}`} style={{ textDecoration: "none", color: "inherit" }}> 
-              <Button size="small" color="primary">About</Button>
+              <CustomButton variant="text" size="small" color="secondary">
+                About
+              </CustomButton> 
             </Link>
-            <Button onClick={toggleBookmark} color={bookmarked ? "secondary" : "primary"}>
-              <BookmarkAdd />
-              {/* {bookmarked ? "Remove Bookmark" : "Add Bookmark"} */}
-            </Button>
+            <CustomButton
+              onClick={() => toggleBookmark({ id, title, image, description, rating })}
+              icon={isBookmarked ? <Bookmark /> : <BookmarkBorder />}
+              isIconButton={true}
+              color={isBookmarked ? "secondary" : "inherit"}
+            />
           </Stack>
-          {/* <IconButton>
-            <BookmarkAdd />
-          </IconButton> */}
-          {/* <IconButton>
-            <Share />
-          </IconButton> */}
         </CardActions>
       </Card>
     
     );
   };
-
-// const MangaDetails = () =>{
-//   const { id } = useParams();
-//   const manga = mangaList.find((m) => m.id === Number(id));
-
-//   if (!manga) {
-//     return <Typography variant="h4" align="center">Manga not found</Typography>;
-//   }
-
-//   return (
-//     <Container>
-//       <Card>
-//         <CardMedia component="img" height="400" image={manga.image} alt={manga.title} />
-//         <CardContent>
-//           <Typography variant="h4">{manga.title}</Typography>
-//           <Typography variant="body1">{manga.description}</Typography>
-//         </CardContent>
-//       </Card>
-//     </Container>
-//   );
-// }
   
 export default MangaCard
-// export default { MangaCard, MangaDetails };

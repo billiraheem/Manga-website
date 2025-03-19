@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { InputBase, IconButton, Paper } from "@mui/material";
 import { Search } from "@mui/icons-material";
+import CustomButton from "../buttonComponent/customButton";
 
 const SearchComponent: React.FC = () => {
   const [query, setQuery] = useState("");
@@ -34,9 +35,7 @@ const SearchComponent: React.FC = () => {
         onChange={(e) => setQuery(e.target.value)}
         sx={{ ml: 1, flex: 1, color: "black" }}
       />
-      <IconButton type="submit">
-        <Search sx={{ color: "gray" }} />
-      </IconButton>
+      <CustomButton onClick={(e) => handleSearch(e)} icon={<Search />} isIconButton={true} color="inherit"/>
     </Paper>
   );
 };

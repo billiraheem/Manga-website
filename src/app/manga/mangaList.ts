@@ -2,7 +2,7 @@ export interface Manga {
     id: number
     title: string
     image: string
-    rating: number
+    rating?: number
     description?: string
     genre?: string[]
   }

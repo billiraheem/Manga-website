@@ -1,18 +1,6 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import NavBar from "./components/navBar/NavBar";
-import { createTheme, CssBaseline } from "@mui/material";
-import { ThemeProvider } from "@emotion/react";
-
-
-// const theme = createTheme({
-//   palette: {
-//     background: {
-//       default: '#dd33fa', 
-//     },
-//   },
-// });
+import { BookmarkProvider } from "./contexts/bookmarksContext";
 
 export default function RootLayout({
   children,
@@ -22,12 +10,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body >
-        {/* <ThemeProvider theme={theme}>
-          <CssBaseline> */}
-            <NavBar />
-            {children}
-          {/* </CssBaseline>
-        </ThemeProvider> */}
+            <NavBar children={undefined} />
+            <BookmarkProvider>
+              {children}
+            </BookmarkProvider>
       </body>
     </html>
   );
